@@ -2,8 +2,8 @@
 import iziToast from 'izitoast';
 // Додатковий імпорт стилів
 import 'izitoast/dist/css/iziToast.min.css';
-import `./img/alert.png`
 //functions
+
 function startFunction(event) {
   let message = {
     icon: ``,
