@@ -22,8 +22,12 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    isDateValid(selectedDates[0]) ? activateBtn() : disactivateBtn();
-    userSelectedDate = selectedDates[0];
+    if (isDateValid(selectedDates[0])) {
+      activateBtn();
+      userSelectedDate = selectedDates[0];
+    } else {
+      disactivateBtn();
+    }
   },
 };
 //functions
@@ -55,8 +59,14 @@ const disactivateInput = () => {
   dateInput.disabled = true;
   dateInput.classList.add(`input-disable`);
 };
+const activateInput = () => {
+  dateInput.disabled = false;
+  dateInput.classList.remove(`input-disable`);
+};
+
 const switchBtnStyle = position => {
   position = position ? position : ``;
+
   switch (position.toLowerCase) {
     case `on`: {
       btn.classList.add(`is-active`);
@@ -74,6 +84,7 @@ const switchBtnStyle = position => {
 
 const btnFunc = event => {
   startTimer(event);
+
   disactivateBtn();
   disactivateInput();
 };
@@ -88,11 +99,17 @@ const showTimer = () => {
     hours.textContent = String(timeLeftObject.hours).padStart(2, '0');
     minutes.textContent = String(timeLeftObject.minutes).padStart(2, '0');
     seconds.textContent = String(timeLeftObject.seconds).padStart(2, '0');
-  } else return;
+  } else {
+    activateBtn();
+    activateInput();
+    clearInterval(intervalId);
+
+    return;
+  }
 };
 const startTimer = event => {
   showTimer();
-  const intervalId = setInterval(showTimer, 1000);
+  intervalId = setInterval(showTimer, 1000);
 };
 const isDateValid = date => {
   if (date.getTime() <= Date.now()) {
@@ -126,5 +143,5 @@ const hours = timer.querySelector(`[data-hours]`);
 const minutes = timer.querySelector(`[data-minutes]`);
 const seconds = timer.querySelector(`[data-seconds]`);
 let userSelectedDate = ``;
-
+let intervalId;
 btn.addEventListener(`click`, event => btnClick(event));

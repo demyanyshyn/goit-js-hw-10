@@ -19,37 +19,29 @@ function startFunction(event) {
   };
   event.preventDefault();
   const delay = event.target.delay.value;
-  const state = event.target.state.value;
-  let shouldResolve = true;
+  const state = event.target.state.value.toLowerCase();
+  let shouldResolve = state === `fulfilled`;
 
-  switch (state) {
-    case `fulfilled`: {
+  makePromise(delay, shouldResolve)
+    .then(delay => {
       message.message = `Fulfilled promise ${delay}ms`;
       message.color = `#59a10d`;
       message.iconUrl = `./img/ok.png`;
-
-      break;
-    }
-    case `rejected`: {
+      iziToast.show(message);
+    })
+    .catch(delay => {
       message.message = `Rejected promise ${delay}ms`;
       message.iconUrl = `./img/alert.png`;
       message.color = `#ef4040`;
       shouldResolve = false;
-
-      break;
-    }
-  }
-  makePromise(message, delay, shouldResolve);
+      iziToast.show(message);
+    });
 }
 
-const makePromise = (message, delay, shouldResolve = true) => {
+const makePromise = (delay, shouldResolve = true) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (shouldResolve) {
-        resolve(iziToast.show(message));
-      } else {
-        reject(iziToast.show(message));
-      }
+      shouldResolve ? resolve(delay) : reject(delay);
     }, delay);
   });
 };
