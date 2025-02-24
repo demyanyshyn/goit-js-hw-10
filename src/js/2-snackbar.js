@@ -32,7 +32,7 @@ function startFunction(event) {
     }
     case `rejected`: {
       message.message = `Rejected promise ${delay}ms`;
-      message.iconUrl = `./img/alert.png`;
+      message.iconUrl = `../src/img/alert.png`;
       message.color = `#ef4040`;
       shouldResolve = false;
 
