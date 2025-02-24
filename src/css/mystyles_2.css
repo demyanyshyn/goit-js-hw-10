@@ -27,11 +27,6 @@ input {
 [name='delay']:hover {
   border-color: #000;
 }
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
-  width: 5px;
-  height: 30px;
-}
 
 input[type='radio'] {
   padding: 0;
@@ -44,9 +39,6 @@ input[type='radio'] {
   position: relative;
   cursor: pointer;
 }
-/* input[type='radio']:hover {
-  border-color: #000;
-} */
 
 input[type='radio']:checked {
   border-color: #4e75ff;
