@@ -7,7 +7,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 function startFunction(event) {
   let message = {
     icon: ``,
-    iconUrl: `../img/alert.png`,
+    iconUrl: `./img/alert.png`,
     iconColor: '#fff',
     messageColor: `#fff`,
     color: `#ef4040`,
@@ -32,7 +32,7 @@ function startFunction(event) {
     }
     case `rejected`: {
       message.message = `Rejected promise ${delay}ms`;
-      message.iconUrl = `../img/alert.png`;
+      message.iconUrl = `./img/alert.png`;
       message.color = `#ef4040`;
       shouldResolve = false;
 
