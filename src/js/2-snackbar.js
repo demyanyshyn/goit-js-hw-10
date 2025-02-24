@@ -6,13 +6,13 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 function startFunction(event) {
   let message = {
-    icon: ``,
-    iconUrl: `./img/alert.png`,
+    icon: `material-icons-outlined`,
+    // iconUrl: `./img/alert.png`,
     iconColor: '#fff',
     messageColor: `#fff`,
     color: `#ef4040`,
     position: `topRight`,
-    class: 'izi-svg',
+    // class: 'icon',
     timeout: 5000,
     imageWidth: 50,
     theme: `dark`,
@@ -26,12 +26,12 @@ function startFunction(event) {
     .then(delay => {
       message.message = `Fulfilled promise ${delay}ms`;
       message.color = `#59a10d`;
-      message.iconUrl = `./img/ok.png`;
+      message.iconText = `task_alt`;
       iziToast.show(message);
     })
     .catch(delay => {
-      message.message = `Rejected promise ${delay}ms`;
-      message.iconUrl = `./img/alert.png`;
+      message.message = ` Rejected promise ${delay}ms`;
+      message.iconText = `dangerous`;
       message.color = `#ef4040`;
       shouldResolve = false;
       iziToast.show(message);
