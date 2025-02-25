@@ -7,31 +7,27 @@ import 'izitoast/dist/css/iziToast.min.css';
 function startFunction(event) {
   let message = {
     icon: `material-icons-outlined`,
-    // iconUrl: `./img/alert.png`,
     iconColor: '#fff',
     messageColor: `#fff`,
     color: `#ef4040`,
     position: `topRight`,
-    // class: 'icon',
     timeout: 5000,
     imageWidth: 50,
     theme: `dark`,
   };
   event.preventDefault();
-  const delay = event.target.delay.value;
+  const delay = Number(event.target.delay.value);
   const state = event.target.state.value.toLowerCase();
   let shouldResolve = state === `fulfilled`;
 
   makePromise(delay, shouldResolve)
     .then(delay => {
-      message.message = `Fulfilled promise ${delay}ms`;
+      message.message = `<span class="material-icons-outlined" style="margin-right:10px;">task_alt </span>task_alt</span> Fulfilled promise ${delay}ms`;
       message.color = `#59a10d`;
-      message.iconText = `task_alt`;
       iziToast.show(message);
     })
     .catch(delay => {
-      message.message = ` Rejected promise ${delay}ms`;
-      message.iconText = `dangerous`;
+      message.message = `<span class="material-icons-outlined" style="margin-right:10px;">dangerous </span>task_alt</span> Rejected promise ${delay}ms`;
       message.color = `#ef4040`;
       shouldResolve = false;
       iziToast.show(message);

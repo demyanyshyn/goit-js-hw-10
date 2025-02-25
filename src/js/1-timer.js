@@ -67,7 +67,7 @@ const activateInput = () => {
 const switchBtnStyle = position => {
   position = position ? position : ``;
 
-  switch (position.toLowerCase) {
+  switch (position.toLowerCase()) {
     case `on`: {
       btn.classList.add(`is-active`);
       break;
@@ -88,6 +88,7 @@ const btnFunc = event => {
   disactivateBtn();
   disactivateInput();
 };
+
 const showTimer = () => {
   let timeLeft = 0;
   let timeLeftObject = {};
@@ -100,17 +101,22 @@ const showTimer = () => {
     minutes.textContent = String(timeLeftObject.minutes).padStart(2, '0');
     seconds.textContent = String(timeLeftObject.seconds).padStart(2, '0');
   } else {
-    activateBtn();
-    activateInput();
-    clearInterval(intervalId);
-
+    stopTimer();
     return;
   }
 };
+
 const startTimer = event => {
   showTimer();
   intervalId = setInterval(showTimer, 1000);
 };
+
+const stopTimer = () => {
+  activateBtn();
+  activateInput();
+  clearInterval(intervalId);
+};
+
 const isDateValid = date => {
   if (date.getTime() <= Date.now()) {
     buildErrorMessage();
@@ -118,6 +124,7 @@ const isDateValid = date => {
   }
   return true;
 };
+
 const btnClick = event => {
   event.preventDefault();
   isActive(event.currentTarget)
