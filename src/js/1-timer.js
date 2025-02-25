@@ -104,6 +104,7 @@ const showTimer = () => {
     stopTimer();
     return;
   }
+  console.log(intervalId);
 };
 
 const startTimer = event => {
@@ -112,7 +113,6 @@ const startTimer = event => {
 };
 
 const stopTimer = () => {
-  activateBtn();
   activateInput();
   clearInterval(intervalId);
 };
@@ -133,6 +133,7 @@ const btnClick = event => {
     ? buildErrorMessage()
     : buildErrorMessage(`Wait please for timer finish`);
 };
+
 const buildErrorMessage = message => {
   erorrMessage.message = message ?? `Please choose a date in the future`;
   iziToast.show(erorrMessage);
