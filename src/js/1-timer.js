@@ -46,14 +46,14 @@ const convertMs = ms => {
 };
 
 const activateBtn = () => {
-  if (isActive(btn)) return;
-  btn.active = true;
-  switchBtnStyle();
+  if (isBtnActive) return;
+  isBtnActive = true;
+  switchBtnStyle(`on`);
 };
 const disactivateBtn = () => {
-  if (!isActive(btn)) return;
-  btn.active = false;
-  switchBtnStyle();
+  if (!isBtnActive) return;
+  isBtnActive = false;
+  switchBtnStyle(`off`);
 };
 const disactivateInput = () => {
   dateInput.disabled = true;
@@ -127,7 +127,7 @@ const isDateValid = date => {
 
 const btnClick = event => {
   event.preventDefault();
-  isActive(event.currentTarget)
+  isBtnActive
     ? btnFunc()
     : !dateInput.disabled
     ? buildErrorMessage()
@@ -139,9 +139,8 @@ const buildErrorMessage = message => {
   iziToast.show(erorrMessage);
 };
 
-const isActive = elem => elem.active ?? false;
-
 //Body
+let isBtnActive = false;
 const dateInput = document.querySelector(`#datetime-picker`);
 const calendar = flatpickr(dateInput, options);
 const btn = document.querySelector(`[data-start]`);
